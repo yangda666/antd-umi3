@@ -1,15 +1,25 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 const { REACT_APP_ENV } = process.env;
+
+const { theme } = require('antd/lib');
+const { convertLegacyToken } = require('@ant-design/compatible/lib');
+
+const { defaultAlgorithm, defaultSeed } = theme;
+
+const mapToken = defaultAlgorithm(defaultSeed);
+const v4Token = convertLegacyToken(mapToken);
 export default defineConfig({
   hash: true,
-  antd: {},
+  antd: false,
   dva: {
     hmr: true,
   },
+  // theme:{
+  //   ...v4Token
+  // },
   layout: {
     // https://umijs.org/zh-CN/plugins/plugin-layout
     locale: true,
@@ -312,13 +322,15 @@ export default defineConfig({
     // 如果不想要 configProvide 动态设置主题需要把这个设置为 default
     // 只有设置为 variable， 才能使用 configProvide 动态设置主色调
     // https://ant.design/docs/react/customize-theme-variable-cn
-    'root-entry-name': 'variable',
+    ...v4Token,
+    'root-entry-name': 'default',
   },
   // esbuild is father build tools
   // https://umijs.org/plugins/plugin-esbuild
   esbuild: {},
   title: false,
   ignoreMomentLocale: true,
+
   proxy: proxy[REACT_APP_ENV || 'dev'],
   manifest: {
     basePath: '/',
