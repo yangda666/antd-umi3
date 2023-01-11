@@ -103,6 +103,8 @@ export const BasicList: FC = () => {
 
   const showEditModal = (item: BasicListItemDataType) => {
     setVisible(true);
+    console.log('item', item);
+
     setCurrent(item);
   };
 

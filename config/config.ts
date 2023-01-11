@@ -3,6 +3,7 @@ import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 const { REACT_APP_ENV } = process.env;
+const AntdMomentWebpackPlugin = require('@ant-design/moment-webpack-plugin');
 
 const { theme } = require('antd/lib');
 const { convertLegacyToken } = require('@ant-design/compatible/lib');
@@ -17,9 +18,7 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
-  // theme:{
-  //   ...v4Token
-  // },
+
   layout: {
     // https://umijs.org/zh-CN/plugins/plugin-layout
     locale: true,
@@ -27,7 +26,7 @@ export default defineConfig({
     ...defaultSettings,
   },
   dynamicImport: {
-    loading: '@ant-design/pro-layout/es/PageLoading',
+    // loading: '@ant-design/pro-layout/es/PageLoading',
   },
   targets: {
     ie: 11,
@@ -354,7 +353,10 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  mfsu: {},
+  chainWebpack: (memo) => {
+    memo.plugin('antd-moment-webpack-plugin').use(AntdMomentWebpackPlugin);
+  },
+  // mfsu: {},
   webpack5: {},
   exportStatic: {},
 });

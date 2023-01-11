@@ -1,8 +1,8 @@
 import { Card, Radio, Typography } from 'antd';
-import numeral from 'numeral';
+// import numeral from 'numeral';
 import type { RadioChangeEvent } from 'antd/es/radio';
-import { Donut } from '@ant-design/charts';
-import type { DonutConfig } from '@ant-design/charts/es/donut';
+// import { Donut } from '@ant-design/charts';
+// import type { DonutConfig } from '@ant-design/charts/es/donut';
 import React from 'react';
 import type { DataItem } from '../data.d';
 import styles from '../style.less';
@@ -13,7 +13,7 @@ const ProportionSales = ({
   dropdownGroup,
   salesType,
   loading,
-  salesPieData,
+  // salesPieData,
   handleChangeSalesType,
 }: {
   loading: boolean;
@@ -45,7 +45,7 @@ const ProportionSales = ({
   >
     <div>
       <Text>销售额</Text>
-      <Donut
+      {/* <Donut
         forceFit
         height={340}
         radius={0.8}
@@ -66,9 +66,9 @@ const ProportionSales = ({
         statistic={
           {
             totalLabel: '销售额',
-          } as DonutConfig['statistic']
+          } 
         }
-      />
+      /> */}
     </div>
   </Card>
 );
