@@ -340,7 +340,7 @@ export default defineConfig({
   //   {
   //     requestLibPath: "import { request } from 'umi'",
   //     // 或者使用在线的版本
-  //     // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json"
+  //     // schemaPath: "https://gw.alipayobjects.com/os/antfincdn/M%24jrzTTYJN/oneapi.json"···
   //     schemaPath: join(__dirname, 'oneapi.json'),
   //     mock: false,
   //   },
@@ -353,9 +353,9 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  chainWebpack: (memo) => {
-    memo.plugin('antd-moment-webpack-plugin').use(AntdMomentWebpackPlugin);
-  },
+  // chainWebpack: (memo) => {
+  //   memo.plugin('antd-moment-webpack-plugin').use(AntdMomentWebpackPlugin);
+  // },
   // mfsu: {},
   webpack5: {},
   exportStatic: {},

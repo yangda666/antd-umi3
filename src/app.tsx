@@ -9,7 +9,14 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 // import { PageLoading } from '@ant-design/pro-layout/lib';
-import { Spin } from 'antd';
+import { ConfigProvider, Spin } from 'antd';
+
+import zhCN from 'antd/lib/locale/zh_CN';
+import dayjs from 'dayjs';
+import dayjsLocal from 'dayjs/locale/zh-cn';
+// ...
+// dayjs国际化
+dayjs.locale(dayjsLocal);
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -89,7 +96,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       // if (initialState?.loading) return <PageLoading />;
       return (
         <>
-          {children}
+          <ConfigProvider locale={zhCN}>{children}</ConfigProvider>
+
           {!props.location?.pathname?.includes('/login') && (
             <SettingDrawer
               disableUrlParams

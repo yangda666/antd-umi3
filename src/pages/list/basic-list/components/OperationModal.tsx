@@ -1,4 +1,7 @@
 import type { FC } from 'react';
+import dayjs from 'dayjs';
+import 'dayjs/locale/zh-cn';
+import locale from 'antd/locale/zh_CN';
 import ProForm, {
   ModalForm,
   ProFormSelect,
@@ -8,8 +11,8 @@ import ProForm, {
 } from '@ant-design/pro-form';
 import type { BasicListItemDataType } from '../data.d';
 import styles from '../style.less';
-import { Button, DatePicker, Result } from 'antd';
-import moment from 'moment';
+import { Button, ConfigProvider, DatePicker, Result } from 'antd';
+// import moment from 'moment';
 
 type OperationModalProps = {
   done: boolean;
@@ -21,7 +24,7 @@ type OperationModalProps = {
 
 const OperationModal: FC<OperationModalProps> = (props) => {
   const { done, visible, current, onDone, onSubmit, children } = props;
-  const current1 = { ...current, createdAt: moment(current?.createdAt) };
+  const current1 = { ...current, createdAt: dayjs(current?.createdAt) };
   console.log('current1', current1);
 
   if (!visible) {
@@ -56,7 +59,10 @@ const OperationModal: FC<OperationModalProps> = (props) => {
             placeholder="请输入"
           />
           <ProForm.Item name={'createdAt'} label="开时间">
-            <DatePicker style={{ width: '100%' }} showTime />
+            {/* <ConfigProvider locale={locale}> */}
+            <ConfigProvider locale={locale}>
+              <DatePicker style={{ width: '100%' }} showTime />
+            </ConfigProvider>
           </ProForm.Item>
           {/* <ProFormDateTimePicker
             name="createdAt"
